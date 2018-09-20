@@ -12,7 +12,7 @@ loveing
 
 
 
-Jekyll also offers powerful support for code snippets:
+{% highlight ruby %}
 
  system.out.print("hello")
 
