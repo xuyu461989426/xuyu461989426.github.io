@@ -10,24 +10,6 @@
       "title"    : "第一次的博客，但是它晚了5年",
       "tags"     : "life",
       "url"      : "/2018/09/18/hello-blog.html"
-    } ,
-  
-    {
-      "title"    : "MathJax Test",
-      "tags"     : "mathjax",
-      "url"      : "/2017/07/30/mathjax-test.html"
-    } ,
-  
-    {
-      "title"    : "H2O theme for Jekyll",
-      "tags"     : "jekyll 前端开发 设计",
-      "url"      : "/2017/04/18/new-theme-h2o.html"
-    } ,
-  
-    {
-      "title"    : "Hello Jekyll",
-      "tags"     : "jekyll",
-      "url"      : "/2017/04/18/hello-jekyll.html"
     } 
   
 ]

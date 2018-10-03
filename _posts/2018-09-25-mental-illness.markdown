@@ -6,6 +6,8 @@ categories: ketan
 cover: 'http://upload-images.jianshu.io/upload_images/555358-95bfa1e21a76e675.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240'
 tags:  life 
 ---
+
+### 回忆
 老豆又打电话给我了，我最近一直纠结于个人控制和对于未来发展的忧虑，情绪已经很难受了，我选择不接，我不敢思绪太多，我知道我脑袋想多了就会发木，整个人的思维都会慢下来，真的是那种自己能感觉到的慢下来，举个例子，1+1=2或许是大家瞬间反应过来的计算过程，当我脑袋慢下来的时候，我的思维过程就是：
  
  1+1 是什么？反应半天是个计算表达式，然后反应半天1+1到底是不是=2，或者很多人觉得很奇怪，这个过程很简单很直接，几乎瞬间就会回答出来，毫秒级，但是我处于那种状态却要耗尽半天浪费在这个简单的问题上，当我走出这个思想误区的时候，我才知道，自己抑郁了，并且抑郁很深了，抑郁会导致一个人的思维机械化，呆滞化，思想麻木化，并且不受控制飘渺化。
@@ -20,7 +22,10 @@ tags:  life
 
  {有时候真的想，是不是自己前世债，需今世来还}
 
-
+<object width="340" height="86" data="http://music.163.com/style/swf/widget.swf?
+sid=1234572&type=2&auto=1&width=320&height=66" 
+type="application/x-shockwave-flash">
+</object> 
 
 {% highlight ruby %}
 
