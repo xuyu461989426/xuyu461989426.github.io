@@ -5,9 +5,31 @@
     <description>昵称蓝桥，千禧一代，分享我的故事会，消磨你的杯中茶</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 28 Sep 2018 17:02:04 +0800</pubDate>
-    <lastBuildDate>Fri, 28 Sep 2018 17:02:04 +0800</lastBuildDate>
+    <pubDate>Wed, 03 Oct 2018 20:14:01 +0800</pubDate>
+    <lastBuildDate>Wed, 03 Oct 2018 20:14:01 +0800</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
+    
+      <item>
+        <title>baby,人生路途总是充满惊喜和未知</title>
+        <description>&lt;object width=&quot;340&quot; height=&quot;86&quot; data=&quot;http://music.163.com/style/swf/widget.swf?
+sid=1234572&amp;amp;type=2&amp;amp;auto=1&amp;amp;width=320&amp;amp;height=66&quot; type=&quot;application/x-shockwave-flash&quot;&gt;
+&lt;/object&gt;
+
+&lt;p&gt;国庆8天，让我懵逼状态的变化。&lt;/p&gt;
+
+&lt;p&gt;loving&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt; &lt;span class=&quot;err&quot;&gt;希望我懂，抱有一颗迎接变化的心，才是不变的恒心，永远勇敢面对未来的挑战。&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+</description>
+        <pubDate>Wed, 03 Oct 2018 04:28:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/10/03/baby-future.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/10/03/baby-future.html</guid>
+        
+        <category>life</category>
+        
+        
+      </item>
     
       <item>
         <title>世间本来就是一场磨练，要善于发现美好</title>
@@ -27,7 +49,7 @@
 &lt;p&gt;{有时候真的想，是不是自己前世债，需今世来还}&lt;/p&gt;
 
 &lt;object width=&quot;340&quot; height=&quot;86&quot; data=&quot;http://music.163.com/style/swf/widget.swf?
-sid=1217773&amp;amp;type=2&amp;amp;auto=1&amp;amp;width=320&amp;amp;height=66&quot; type=&quot;application/x-shockwave-flash&quot;&gt;
+sid=1234572&amp;amp;type=2&amp;amp;auto=1&amp;amp;width=320&amp;amp;height=66&quot; type=&quot;application/x-shockwave-flash&quot;&gt;
 &lt;/object&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt; &lt;span class=&quot;nb&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;fighting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
