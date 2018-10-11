@@ -3,6 +3,7 @@ layout: post
 title:  "baby,人生路途总是充满惊喜和未知"
 date:   2018-10-03 04:28:00 +0800
 tags:  life 
+cover: 'https://upload-images.jianshu.io/upload_images/555358-372b3b1421717a39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240'
 ---
 
 <object width="340" height="86" data="http://music.163.com/style/swf/widget.swf?
