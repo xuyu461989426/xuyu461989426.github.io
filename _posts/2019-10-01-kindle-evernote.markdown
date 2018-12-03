@@ -2,7 +2,7 @@
 layout: post
 title:  "evernote需要kindle的时候"
 date:   2018-10-01 09:28:00 +0800
-cover: "https://upload-images.jianshu.io/upload_images/555358-f7c82f3d8f8218e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
+cover: "https://upload-images.jianshu.io/upload_images/555358-d01ad87be3fd4abe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
 tags:  life 
 ---
 
