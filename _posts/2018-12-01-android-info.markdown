@@ -57,9 +57,8 @@ tags:  code
     
 
 ```
- 
- 
-  ![尺寸转换](../assets/noteimg/android_info_01.png)
+
+  ![尺寸转换](https://ketanxu.com/assets/noteimg/android_info_01.png)
  
 
 首先我们要尺寸有个敏度度
