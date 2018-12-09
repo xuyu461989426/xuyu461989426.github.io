@@ -59,7 +59,8 @@ tags:  code
 ```
  
  
- ![29a1f37229d3b6b215bf0421803ea471](Android 之获取硬件信息.resources/6536BB11-9969-4FD3-A749-0B7BF9555BC9.png)
+ ![29a1f37229d3b6b215bf0421803ea471](images
+ .resources/6536BB11-9969-4FD3-A749-0B7BF9555BC9.png)
  
 
 首先我们要尺寸有个敏度度
