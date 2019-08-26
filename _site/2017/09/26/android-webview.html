@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>android WebView的一些使用总结 - 宇的独立博客</title>
+    <meta name="author"  content="ketan">
+    <meta name="description" content="android WebView的一些使用总结">
+    <meta name="keywords"  content="code">
+    <!-- Open Graph -->
+    <meta property="og:title" content="android WebView的一些使用总结 - 宇的独立博客">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2017/09/26/android-webview.html">
+    <meta property="og:description" content="昵称蓝桥，千禧一代，分享我的故事会，消磨你的杯中茶">
+    <meta property="og:site_name" content="宇的独立博客">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+Author: Ray-Eldath
+refer to:
+ - http://docs.mathjax.org/en/latest/options/index.html
+-->
+
+	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["$", "$"] ],
+			displayMath: [ ["$$", "$$"] ],
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+	
+    <!--
+Author: Ray-Eldath
+-->
+<style>
+    .markdown-body .anchor{
+        float: left;
+        margin-top: -8px;
+        margin-left: -20px;
+        padding-right: 4px;
+        line-height: 1;
+        opacity: 0;
+    }
+    
+    .markdown-body .anchor .anchor-icon{
+        font-size: 15px
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        let nodes = document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3")
+        for(let node of nodes) {
+            var anchor = document.createElement("a")
+            var anchorIcon = document.createElement("i")
+            anchorIcon.setAttribute("class", "fa fa-anchor fa-lg anchor-icon")
+            anchorIcon.setAttribute("aria-hidden", true)
+            anchor.setAttribute("class", "anchor")
+            anchor.setAttribute("href", "#" + node.getAttribute("id"))
+            
+            anchor.onmouseover = function() {
+                this.style.opacity = "0.4"
+            }
+            
+            anchor.onmouseout = function() {
+                this.style.opacity = "0"
+            }
+            
+            anchor.appendChild(anchorIcon)
+            node.appendChild(anchor)
+        }
+    })
+</script>
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header
+    class="g-banner post-header post-pattern-circuitBoard bgcolor-default "
+    data-theme="default"
+  >
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#code" class="post-tag">code</a>
+          
+        
+      </div>
+      <h1>android WebView的一些使用总结</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">ketan</a></></span>
+        <time class="post-meta-item" datetime="17-09-26"><i class="iconfont icon-date"></i>26 Sep 2017</time>
+      </div>
+    </div>
+    
+    <div class="filter"></div>
+      <div class="post-cover" style="background: url('https://ketanxu.com/assets/noteimg/img_webview.png') center no-repeat; background-size: cover;"></div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <p>[TOC]</p>
+<h4 id="前言">前言</h4>
+<p>在Android 中内嵌H5是一种很常见的事情，但是有时候我们会遇到很多问题，现在说说我遇到的几个小问题。</p>
+
+<h5 id="h5无法加载网页显示不完全或者显示不完整">H5无法加载，网页显示不完全，或者显示不完整。</h5>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="o">{</span> <span class="c1">//加载不显示页面处理方案</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">os</span><span class="o">.</span><span class="na">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&gt;=</span> <span class="n">android</span><span class="o">.</span><span class="na">os</span><span class="o">.</span><span class="na">Build</span><span class="o">.</span><span class="na">VERSION_CODES</span><span class="o">.</span><span class="na">LOLLIPOP</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">webView</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setMixedContentMode</span><span class="o">(</span><span class="n">WebSettings</span><span class="o">.</span><span class="na">MIXED_CONTENT_ALWAYS_ALLOW</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="n">webView</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setDomStorageEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="o">}</span>
+</code></pre></div></div>
+
+<p>在Android 5.0开始，WebView已经严格限制了加载不安全来源内容，有时候当前WebView加载很多不安全外部链接，WebView是不支持的，也就是显示空白页面或者显示不完整页面，一部分原因是H5页面内用引用了第三方东西，但是当我们无法控制来源内容的时候，我们可以加上
+setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW)
+这个表明，运行多种内容加载，包括当前安全源加载了不安全的内容。</p>
+
+<p>当然这个一般是偶然的例外，如果H5端是自己公司的的并且能够控制内容，一般是可以内部解决的，还有一种情况也可能导致无法加载完成，就是如果H5采用了Storage 缓存一些判断数据，如果WebView没有开始缓存策略（注意这个是运行H5操作WebView进行缓存，而不是WebView缓存H5页面），可能导致H5逻辑判断失败，这时候需要加上
+setDomStorageEnabled(true)</p>
+
+<h5 id="h5重定向导致goback无限循环">H5重定向导致goback无限循环</h5>
+
+<p>为了精确控制WeView的H5前进和后退，我们需要制定自己的后退操作点击，一般是返回上一步，外加完全退出。</p>
+
+<p>其中完全退出，和返回上一步在正常访问都可以快速实现，借用 finish 和 goback Android功能，但是当有重定向的问题的时候，在IOS中和浏览器起可以正常返回，但是在Android WebView就形成了无限循环</p>
+
+<p>1、首先我们了解下H5中几种重定向的方法</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    window.location.href
+    window.history.back
+    window.navigate
+    self.location
+    top.location
+    header url
+</code></pre></div></div>
+<p>可见并不是所以的重定向都会在Reponse中返回 window.location
+ 也就我们无法通过访问返回的结果来判断是不是该URl是重新定向。 这种思路只能放弃</p>
+
+<p>2、采用WebView的一些监听方法</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  监听WebView加载
+  webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                WebView.HitTestResult hit = webView.getHitTestResult();
+                int hitType = hit == null ? WebView.HitTestResult.UNKNOWN_TYPE : hit.getType();
+                if (hitType != WebView.HitTestResult.UNKNOWN_TYPE) {
+                    webView.loadUrl(url);
+                    return true;
+                } else {
+                    //重定向时hitType为0 ,执行默认的操作
+                    return false;
+                }
+            }
+
+}
+这个是WebViewClient中的一个继承的方法
+shouldOverrideUrlLoading  这个方法 在页面进行重定向会进行调用，但是这个并不是仅仅当重定向时候调用，当跳转或者加载非当前页面内容的时候（就是离开当前页面的很多操作），会加载JS或者html等很多链接，我们无法记录当前页面是否是重定向页面，并且也无法确定前面第几个步骤是重定向开始页面。
+</code></pre></div></div>
+
+<p>再翻找一下WebView的一些功能，我们可以看到WebView 提供了BackForWardList（）
+ 这个就是控制WebView 在前进和后退的堆栈。我尝试下打印堆栈中的链接</p>
+
+<p>假如：A,B,C(其中A是原始页面，B是点击链接，C就是重载界面)
+ 当我点击goback 程序会执行
+ C页面finish -&gt;B 重载-&gt; C结果堆栈内部打印还是 A,B,C 这样无限循环，虽然我们明明知道B链接重定向，最终加载C。但是我们还是无法解决一个问题，无法确定多个跳转那个是重定型链接。</p>
+
+<p>我尝试打印 shouldOverrideUrlLoading url链接
+ 当我点击goback</p>
+
+<p>url为。B链接 -&gt; 1，2，3，4（这里是指多个JS或者Html的跳转）-&gt;然后跳转到C链接,</p>
+
+<p>这个有规律吗？？这个真的没有规律吗？？这个肯定有规律。
+ 1、WebView 堆栈只会记录，重定向开始链接和重定向结束链接。
+ 2、当我们点击goback 最终WebView会再次加载C链接，并且WebView History堆栈还是会记录B和C。
+ 3、也就是说我们只要 点击goback B和C被清出堆栈，而又再次进入堆栈。</p>
+
+<pre><code class="language-mermaid">graph TD
+A[A] --&gt;|跳转| B(B)
+C --&gt;|goback| B[B]
+B--&gt;D{shouldOverrideUrlLoading}
+D--&gt;C[C]
+</code></pre>
+
+<p>也就是我们只要记录上次最终加载的Html然后载shouldOverrideUrlLoading进行判断就行了，如果上次加载最终链接是当前将要加载的链接，那么我们不进行加载并且，goBackOrForward（）进行指定step出入堆栈，让重定向开始的B也结束掉，回到A即可，相当于我们也进行了重定向。这样就到达我们破解无限循环的目的了。</p>
+
+    </article>
+
+    
+    <div class="social-share-wrapper">
+      <div class="social-share"></div>
+    </div>
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+      </div>
+      <div class="author-name" rel="author">ketan</div>
+      <div class="bio">
+        <p>APP开发者，热爱技术&设计，精神至上</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="//weibo.com/ketan2yan" target="_blank">
+                    <i class="iconfont icon-weibo"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="https://github.com/xuyu461989426" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2018/09/18/hello-blog.html" class="read-next-link"></a>
+        <section>
+          <span>第一次的博客，但是它晚了5年</span>
+          <p>工作如此之久，我仍然感觉成长速度跟不上同龄人，自认为没有那么笨，总是觉得命运会在搞笑的地方BUG我，或者fly我，...</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2017/09/25/android-info.html" class="read-next-link"></a>
+          <section>
+            <span>android 屏幕尺寸信息</span>
+            <p>[TOC]</p>
+          </section>
+          
+          <div class="filter"></div>
+          <img src="http://dingyue.nosdn.127.net/Xe6EvqxAeI9ouixf0qrC882rTH3v2GEhlgxtlo3smbEE71539130129931.jpg" alt="">
+          
+      </div>
+      
+    </section>
+    
+  </section>
+
+  <footer class="g-footer">
+  <section>宇的独立博客 ©
+  
+  
+    2017
+    -
+  
+  2019
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  
+
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+</body>
+
+</html>

@@ -7,6 +7,12 @@
     } ,
   
     {
+      "title"    : "evernote需要kindle的时候",
+      "tags"     : "life",
+      "url"      : "/2018/10/01/kindle-evernote.html"
+    } ,
+  
+    {
       "title"    : "世间本来就是一场磨练，要善于发现美好",
       "tags"     : "life",
       "url"      : "/2018/09/25/mental-illness.html"
@@ -16,6 +22,18 @@
       "title"    : "第一次的博客，但是它晚了5年",
       "tags"     : "life",
       "url"      : "/2018/09/18/hello-blog.html"
+    } ,
+  
+    {
+      "title"    : "android WebView的一些使用总结",
+      "tags"     : "code",
+      "url"      : "/2017/09/26/android-webview.html"
+    } ,
+  
+    {
+      "title"    : "android 屏幕尺寸信息",
+      "tags"     : "code",
+      "url"      : "/2017/09/25/android-info.html"
     } 
   
 ]

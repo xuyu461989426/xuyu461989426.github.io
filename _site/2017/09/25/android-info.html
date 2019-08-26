@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>android 屏幕尺寸信息 - 宇的独立博客</title>
+    <meta name="author"  content="ketan">
+    <meta name="description" content="android 屏幕尺寸信息">
+    <meta name="keywords"  content="code">
+    <!-- Open Graph -->
+    <meta property="og:title" content="android 屏幕尺寸信息 - 宇的独立博客">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2017/09/25/android-info.html">
+    <meta property="og:description" content="昵称蓝桥，千禧一代，分享我的故事会，消磨你的杯中茶">
+    <meta property="og:site_name" content="宇的独立博客">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+Author: Ray-Eldath
+refer to:
+ - http://docs.mathjax.org/en/latest/options/index.html
+-->
+
+	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["$", "$"] ],
+			displayMath: [ ["$$", "$$"] ],
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+	
+    <!--
+Author: Ray-Eldath
+-->
+<style>
+    .markdown-body .anchor{
+        float: left;
+        margin-top: -8px;
+        margin-left: -20px;
+        padding-right: 4px;
+        line-height: 1;
+        opacity: 0;
+    }
+    
+    .markdown-body .anchor .anchor-icon{
+        font-size: 15px
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        let nodes = document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3")
+        for(let node of nodes) {
+            var anchor = document.createElement("a")
+            var anchorIcon = document.createElement("i")
+            anchorIcon.setAttribute("class", "fa fa-anchor fa-lg anchor-icon")
+            anchorIcon.setAttribute("aria-hidden", true)
+            anchor.setAttribute("class", "anchor")
+            anchor.setAttribute("href", "#" + node.getAttribute("id"))
+            
+            anchor.onmouseover = function() {
+                this.style.opacity = "0.4"
+            }
+            
+            anchor.onmouseout = function() {
+                this.style.opacity = "0"
+            }
+            
+            anchor.appendChild(anchorIcon)
+            node.appendChild(anchor)
+        }
+    })
+</script>
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header
+    class="g-banner post-header post-pattern-circuitBoard bgcolor-default "
+    data-theme="default"
+  >
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#code" class="post-tag">code</a>
+          
+        
+      </div>
+      <h1>android 屏幕尺寸信息</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">ketan</a></></span>
+        <time class="post-meta-item" datetime="17-09-25"><i class="iconfont icon-date"></i>25 Sep 2017</time>
+      </div>
+    </div>
+    
+    <div class="filter"></div>
+      <div class="post-cover" style="background: url('http://dingyue.nosdn.127.net/Xe6EvqxAeI9ouixf0qrC882rTH3v2GEhlgxtlo3smbEE71539130129931.jpg') center no-repeat; background-size: cover;"></div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <p>[TOC]</p>
+
+<h4 id="获取android设备信息">获取android设备信息</h4>
+
+<h5 id="设备唯一识别号">设备唯一识别号</h5>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">getDeviceId</span><span class="o">(){</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&lt;</span> <span class="n">Build</span><span class="o">.</span><span class="na">VERSION_CODES</span><span class="o">.</span><span class="na">O</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">TelephonyManager</span> <span class="n">telecomManager</span> <span class="o">=</span> <span class="o">(</span><span class="n">TelephonyManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">TELEPHONY_SERVICE</span><span class="o">);</span>
+            <span class="n">telecomManager</span><span class="o">.</span><span class="na">getDeviceId</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@RequiresApi</span><span class="o">(</span><span class="n">api</span> <span class="o">=</span> <span class="n">Build</span><span class="o">.</span><span class="na">VERSION_CODES</span><span class="o">.</span><span class="na">O</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">getDeviceIme</span><span class="o">(</span><span class="n">String</span> <span class="n">tips</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">TelephonyManager</span> <span class="n">telecomManager</span> <span class="o">=</span> <span class="o">(</span><span class="n">TelephonyManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">TELEPHONY_SERVICE</span><span class="o">);</span>
+        <span class="n">telecomManager</span><span class="o">.</span><span class="na">getImei</span><span class="o">();</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<h5 id="获取设备屏幕宽高">获取设备屏幕宽高</h5>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cm">/**
+     * 获取宽度 px
+     * @param context
+     * @return
+     */</span>
+    <span class="kd">public</span>  <span class="kd">static</span>  <span class="kt">int</span> <span class="nf">getDeviceWidth</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span>  <span class="n">context</span><span class="o">.</span><span class="na">getResources</span><span class="o">().</span><span class="na">getDisplayMetrics</span><span class="o">().</span><span class="na">widthPixels</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * 获取高度 px
+     * @param context
+     * @return
+     */</span>
+
+    <span class="kd">public</span>  <span class="kd">static</span>  <span class="kt">int</span> <span class="nf">getDeviceheight</span> <span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span>  <span class="n">context</span><span class="o">.</span><span class="na">getResources</span><span class="o">().</span><span class="na">getDisplayMetrics</span><span class="o">().</span><span class="na">heightPixels</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    
+    <span class="n">DisplayMetrics</span> <span class="err">的一些常见属性</span>
+    
+
+</code></pre></div></div>
+
+<p><img src="https://ketanxu.com/assets/noteimg/android_info_01.png" alt="尺寸转换" /></p>
+
+<p>首先我们要尺寸有个敏度度</p>
+
+<p>1米三尺，一尺10寸 ,一寸3.3333厘米</p>
+
+<p>一英寸=0.762寸=2.54 厘米</p>
+
+<p>一般手掌7寸左右，18厘米，这个可以作为距离参照物。</p>
+
+<p>我们再来了解屏幕的一些概念</p>
+
+<ul>
+  <li>像素  ：构成影像的最小单位，不可分割。记住像素有大小之分，演唱会后面屏幕在走进的时候很明显看到像素块。（px）</li>
+  <li>像素密度 ：对角线一英寸距离单位上有多少个像素。(dpi:dots per Inch)（印刷设备，鼠标,每移动一寸，界面跑过多少信息）</li>
+  <li>像素密度： ppi （屏幕显示）</li>
+  <li>dp (density-independent pixel 一种无关像素密度的单位)</li>
+  <li>sp（scale-independentpixel）</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">为什么说</span><span class="n">dp</span><span class="err">是一种无关像素的单位</span> <span class="err">：其实这个概念很混淆，我们获得</span><span class="n">dp</span><span class="err">的计算方式，是以一款固定大小尺寸手机为基准的</span>  <span class="err">系统密度为</span><span class="mi">160</span><span class="n">dpi</span><span class="err">的中密度手机屏幕为基准屏幕，即</span><span class="mi">320</span><span class="err">×</span><span class="mi">480</span><span class="err">的手机屏幕。在这个屏幕中，</span><span class="mi">1</span><span class="n">dp</span><span class="o">=</span><span class="mi">1</span><span class="n">px</span>
+
+<span class="err">为什么要以这个尺寸为基准，那是因为是为了解决一个现实的问题</span>
+<span class="err">当以</span><span class="n">Px</span><span class="err">为显示单位的时候，如果同样是</span><span class="mi">5</span><span class="err">寸的手机，一个正好</span><span class="mi">1080</span><span class="o">*</span><span class="mi">1920</span> <span class="err">的手机</span> <span class="err">显示一个</span> <span class="mi">1080</span><span class="o">*</span><span class="mi">1920</span><span class="err">的图片是正好显示的，但是如果</span><span class="mi">5</span><span class="err">寸手机</span><span class="mi">720</span><span class="o">*</span><span class="mi">1080</span><span class="err">显示图片只能显示一部分，而如果一部</span> <span class="mi">2072</span><span class="o">*</span><span class="mi">4659</span><span class="err">（假设有的话）</span><span class="mi">5</span><span class="err">寸手机，也会显示完全，但是只占用屏幕一半，同样一个</span><span class="mi">5</span><span class="err">寸大小，对于当前的手机，一般来说都是显示同样大小，所以</span><span class="n">dp</span><span class="err">就是为了解决这个问题，让同样尺寸大小的手机，不同分辨率下，显示的图片大小在视觉上趋于一样的。</span>
+
+<span class="err">如何做呢？？就是</span><span class="n">dp</span><span class="o">,</span><span class="n">dp</span><span class="err">就是物理大小上的视觉单位（我定义的），（因为在</span><span class="n">android</span><span class="err">中大家经常用</span><span class="n">dp</span><span class="err">换算</span><span class="n">px</span><span class="err">常常，因为这个思维感到困扰）</span>
+
+<span class="err">视觉单位：是由尺寸和分辨率共同影响的。（视觉就是在人眼观看舒服的，这个舒服度就在在基准手机上观看的舒服度，</span>
+
+
+<span class="n">px</span><span class="o">=</span><span class="n">dp</span><span class="o">*(</span><span class="n">dpi</span><span class="o">/</span><span class="mi">160</span><span class="o">)</span>
+<span class="err">为什么除以</span><span class="mi">160</span> <span class="err">是因为分辨率都是以</span><span class="mi">160</span><span class="err">为比例的</span>
+
+<span class="n">px</span><span class="o">/</span><span class="n">dpi</span> <span class="o">=</span> <span class="n">dp</span><span class="o">/</span><span class="mi">160</span>
+ <span class="err">因为</span><span class="n">px</span><span class="err">是像素块，而</span><span class="n">dpi</span><span class="err">是一英寸有多少个像素块</span>  <span class="err">所以</span><span class="n">px</span><span class="o">/</span><span class="n">dpi</span><span class="err">是像素块大小</span>
+ <span class="err">这个公式就是为了像素块。</span>
+ <span class="err">其实这个公式可以简化为</span><span class="n">px</span><span class="o">/</span><span class="n">dp</span> <span class="o">=</span><span class="n">dpi</span> <span class="err">像素密度就是我们的视觉大小，</span> <span class="n">px</span><span class="err">为显示单位</span><span class="o">,</span><span class="n">dp</span><span class="err">为反补因素，</span>
+ <span class="err">上面就是</span><span class="n">px</span><span class="err">和</span><span class="n">dp</span><span class="err">转换大小</span>
+ 
+  <span class="n">px</span><span class="o">/</span><span class="n">dpi</span> <span class="err">就是像素大小和像素密度的比例</span>
+  <span class="err">比例固定</span> <span class="o">=</span> <span class="n">dp</span><span class="o">/</span><span class="mi">160</span>
+  
+  <span class="err">（总结一句话，就是为了统一视觉距离而出来了与像素无关的</span><span class="n">dp</span><span class="err">大小单位，其值是固定的</span><span class="mi">480</span><span class="o">*</span><span class="mi">320</span> <span class="err">密度是</span><span class="mi">160</span><span class="err">点的设备上）</span>
+  
+   <span class="err">如果按照像素来显示</span> <span class="err">肯定不统一，但是按照</span><span class="n">dp</span><span class="err">来显示肯定统一。因为像素大小变化的，距离是根据</span><span class="n">dp</span><span class="err">倒推像素多少</span>
+ 
+</code></pre></div></div>
+<p>1、设计稿 转化单位，为什么要除以0.75，或者除以2</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>分辨率</th>
+      <th> </th>
+      <th>像素大小比例</th>
+      <th>分辨率比例160</th>
+      <th>分辨率</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ldpi</td>
+      <td> </td>
+      <td>0.75</td>
+      <td>1.5</td>
+      <td>240</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>mdpi</td>
+      <td> </td>
+      <td>1</td>
+      <td>2</td>
+      <td>320</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>hdpi</td>
+      <td> </td>
+      <td>1.5</td>
+      <td>3</td>
+      <td>480</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>xhdpi</td>
+      <td> </td>
+      <td>2</td>
+      <td>4.5</td>
+      <td>720</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>xxhdpi</td>
+      <td> </td>
+      <td>3</td>
+      <td>6.75</td>
+      <td>1080</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DENSITY_LOW</span> <span class="o">=</span> <span class="mi">120</span><span class="o">;</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DENSITY_MEDIUM</span> <span class="o">=</span> <span class="mi">160</span><span class="o">;</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DENSITY_TV</span> <span class="o">=</span> <span class="mi">213</span><span class="o">;</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DENSITY_HIGH</span> <span class="o">=</span> <span class="mi">240</span><span class="o">;</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DENSITY_XHIGH</span> <span class="o">=</span> <span class="mi">320</span><span class="o">;</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DENSITY_400</span> <span class="o">=</span> <span class="mi">400</span><span class="o">;</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DENSITY_XXHIGH</span> <span class="o">=</span> <span class="mi">480</span><span class="o">;</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DENSITY_XXXHIGH</span> <span class="o">=</span> <span class="mi">640</span><span class="o">;</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DENSITY_DEFAULT</span> <span class="o">=</span> <span class="n">DENSITY_MEDIUM</span><span class="o">;</span>
+     
+     <span class="err">这个</span><span class="n">android</span> <span class="err">官方文档中推荐</span><span class="n">dpi</span> <span class="err">一般来说，人眼在</span><span class="mi">300</span><span class="err">多</span><span class="n">dpi</span><span class="err">已经舒适了，所以这个尺寸就是</span><span class="n">UI</span> <span class="err">最佳设计大小，可以由</span><span class="mi">270</span><span class="err">（</span><span class="mi">1080</span><span class="o">*</span><span class="mi">720</span><span class="err">）</span> <span class="err">推测出手机稿高度，</span><span class="mi">4</span><span class="err">英寸</span><span class="o">=</span> <span class="mf">2.54</span><span class="o">*</span><span class="mi">5</span> <span class="o">=</span><span class="mf">12.16</span><span class="n">cm</span> <span class="err">这个都之前小手机</span>
+     <span class="err">现在多</span><span class="mi">2341</span>      <span class="mi">400</span><span class="err">推出一般高度</span> <span class="mf">5.8</span> <span class="o">=</span> <span class="mf">14.87</span>
+     <span class="err">所以现在多为</span><span class="mi">320</span><span class="o">-</span><span class="mi">410</span><span class="err">密度浮动。</span>
+     
+     
+</code></pre></div></div>
+
+<h4 id="默认基准分辨率">默认基准分辨率</h4>
+
+<p>我一直不知道默认values-下的分辨率到底是哪个分辨率，其实这个分辨不是那个分辨，而是看你放的是那个分辨率，放720的就是720的分辨率，但你如果你适配480的手机，默认这个分辨率的手机也会加载这个数值，就会导致图形变得很大，但是一般设计稿都是720，并且你常见的手机都是1080或者720，这就导致你一般看不到差别。</p>
+
+<p>所以最好还是适配下
+ 查看下美团的适配方案。</p>
+
+<p><a href="https://blog.csdn.net/ttkatrina/article/details/50623043">屏幕分辨率参考</a></p>
+
+<h5 id="为什么要适配">为什么要适配</h5>
+<p>因为默认加载的都是values 下的dimen ，这个只能适配一个分辨率的机型，其他机型如果没有适配可能布局不合适，默认参考基础一般都是主流机型。
+ <a href="https://blog.csdn.net/fire_tray/article/details/49967247">android对不同dpi如何选择dimen</a></p>
+
+<p>*photoShop 栅格处理 将高分辨率 丢失精度转换为低分辨率。</p>
+
+<h4 id="displaymetrics-属性解析">DisplayMetrics 属性解析</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">density</span>  <span class="o">:</span><span class="err">逻辑密度比例</span>
+<span class="n">densityDpi</span> <span class="err">：像素密度</span>
+<span class="n">DisplayMetrics</span><span class="o">.</span><span class="na">DENSITY</span>  <span class="err">像素密度</span>
+
+<span class="n">px</span> <span class="n">sp</span> <span class="n">dp</span> <span class="err">相互转换。</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">px2dip</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">float</span> <span class="n">pxValue</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="kt">float</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getResources</span><span class="o">().</span><span class="na">getDisplayMetrics</span><span class="o">().</span><span class="na">density</span><span class="o">;</span>
+        <span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">pxValue</span> <span class="o">/</span> <span class="n">scale</span> <span class="o">+</span> <span class="mf">0.5f</span><span class="o">);</span>
+    <span class="o">}</span>
+
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">px2sp</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">float</span> <span class="n">pxValue</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">float</span> <span class="n">fontScale</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getResources</span><span class="o">().</span><span class="na">getDisplayMetrics</span><span class="o">().</span><span class="na">scaledDensity</span><span class="o">;</span>
+        <span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">pxValue</span> <span class="o">/</span> <span class="n">fontScale</span> <span class="o">+</span> <span class="mf">0.5f</span><span class="o">);</span>
+    <span class="o">}</span>
+
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">sp2px</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">float</span> <span class="n">spValue</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">float</span> <span class="n">fontScale</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getResources</span><span class="o">().</span><span class="na">getDisplayMetrics</span><span class="o">().</span><span class="na">scaledDensity</span><span class="o">;</span>
+        <span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">spValue</span> <span class="o">*</span> <span class="n">fontScale</span> <span class="o">+</span> <span class="mf">0.5f</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+
+<span class="kt">float</span> <span class="err">类型的</span> <span class="mf">4.1</span> <span class="err">和</span><span class="mf">4.9</span> <span class="err">强转成</span><span class="n">int</span><span class="err">类型后，会失去精准度变成</span> <span class="n">int</span><span class="err">类型的</span><span class="mi">4</span><span class="err">，</span> <span class="err">而如果咱们想四舍五入的话，把他们都加上</span><span class="mf">0.5f</span><span class="err">，这样转换出来的结果就是：</span>
+
+<span class="mf">4.4</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">=</span> <span class="mf">4.9</span> <span class="err">转为</span><span class="kt">int</span> <span class="err">还是</span><span class="mi">4</span><span class="err">，而</span><span class="mf">4.5</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">=</span> <span class="mf">5.0</span> <span class="err">转换成</span><span class="n">int</span><span class="err">后就是</span><span class="mi">5</span><span class="err">，正好是四舍五入，这样就保证了咱们算出来的值相对精准。</span>
+</code></pre></div></div>
+
+    </article>
+
+    
+    <div class="social-share-wrapper">
+      <div class="social-share"></div>
+    </div>
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+      </div>
+      <div class="author-name" rel="author">ketan</div>
+      <div class="bio">
+        <p>APP开发者，热爱技术&设计，精神至上</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="//weibo.com/ketan2yan" target="_blank">
+                    <i class="iconfont icon-weibo"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="https://github.com/xuyu461989426" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2017/09/26/android-webview.html" class="read-next-link"></a>
+        <section>
+          <span>android WebView的一些使用总结</span>
+          <p>[TOC]前言在Android 中内嵌H5是一种很常见的事情，但是有时候我们会遇到很多问题，现在说说我遇到的几个小问题。</p>
+        </section>
+        
+        <div class="filter"></div>
+        <img src="https://ketanxu.com/assets/noteimg/img_webview.png" alt="">
+        
+     </div>
+      
+
+      
+    </section>
+    
+  </section>
+
+  <footer class="g-footer">
+  <section>宇的独立博客 ©
+  
+  
+    2017
+    -
+  
+  2019
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  
+
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+</body>
+
+</html>
