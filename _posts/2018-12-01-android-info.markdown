@@ -3,7 +3,7 @@ layout: post
 title:  "android 屏幕尺寸信息"
 date:   2017-09-25 09:28:00 +0800
 categories: ketan
-cover: 'http://dingyue.nosdn.127.net/Xe6EvqxAeI9ouixf0qrC882rTH3v2GEhlgxtlo3smbEE71539130129931.jpg'
+//cover: 'http://dingyue.nosdn.127.net/Xe6EvqxAeI9ouixf0qrC882rTH3v2GEhlgxtlo3smbEE71539130129931.jpg'
 tags:  code 
 ---
 

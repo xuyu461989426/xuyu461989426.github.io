@@ -3,7 +3,6 @@ layout: post
 title:  "世间本来就是一场磨练，要善于发现美好"
 date:   2018-09-25 09:28:00 +0800
 categories: ketan
-cover: 'http://upload-images.jianshu.io/upload_images/555358-95bfa1e21a76e675.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240'
 tags:  life 
 ---
 

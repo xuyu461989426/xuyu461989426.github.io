@@ -3,7 +3,6 @@ layout: post
 title:  "android WebView的一些使用总结"
 date:   2017-09-26 09:28:00 +0800
 categories: ketan
-cover: 'https://ketanxu.com/assets/noteimg/img_webview.png'
 tags:  code 
 ---
 
